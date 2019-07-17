@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019 Chen Mouxiang <cmx_1007@foxmail.com>
+  ~ All Rights Reserved.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="team.henrykey.minitiktok.model.Video" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/style_item_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2D3130">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/coverView"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                app:imageUri="@{model.imageUrl}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:roundedCornerRadius="2dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/idText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:text="@{model.id}"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/coverView"
+                app:layout_constraintTop_toTopOf="@id/coverView" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/authorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{model.userName}"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@id/idText"
+                app:layout_constraintTop_toBottomOf="@id/idText" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/authorIdText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@{model.studentId}"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@id/authorText"
+                app:layout_constraintTop_toBottomOf="@id/authorText" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/updateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/white"
+                app:date="@{model.updatedAt}"
+                app:layout_constraintBottom_toBottomOf="@id/coverView"
+                app:layout_constraintStart_toStartOf="@id/authorIdText" />
+
+            <TextView
+                android:id="@+id/thumbText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:drawableStart="@drawable/ic_thumb_up_grey_24dp"
+                android:drawableLeft="@drawable/ic_thumb_up_grey_24dp"
+                android:drawablePadding="4dp"
+                android:text="@{String.valueOf(model.getThumbCount())}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/coverView"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

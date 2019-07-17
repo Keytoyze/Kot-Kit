@@ -1,0 +1,14 @@
+<!--
+  ~ Copyright (c) 2019 Chen Mouxiang <cmx_1007@foxmail.com>
+  ~ All Rights Reserved.
+  -->
+
+<resources>
+    <string name="app_name">MiniTikTok</string>
+
+    <string name="time_seconds_ago">%1$d秒前</string>
+    <string name="time_minutes_ago">%1$d分钟前</string>
+    <string name="time_hours_ago">%1$d小时前</string>
+    <string name="time_days_ago">%1$d天前</string>
+    <string name="time_year_month_day">YYYY-MM-dd</string>
+</resources>

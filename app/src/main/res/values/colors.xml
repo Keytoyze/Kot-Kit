@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+
+    <color name="black">#000000</color>
+    <color name="black_text_600">#E80F1312</color>
+    <color name="black_text_700">#8A000000</color>
+    <color name="black_text_800">#DE000000</color>
+    <color name="black_background">#1e2322</color>
+    <color name="black_background_dark">#0F1312</color>
+    <color name="black_toolbar">#2A2E2D</color>
+    <color name="black_shadow">#a21c2e24</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="white_toolbar">#E4EBED</color>
+    <color name="white_text">#DEFFFFFF</color>
+    <color name="white_dark">#d0d7d8</color>
+    <color name="white_background">#FAFAFA</color>
+    <color name="white_background_grey">#EFF2F2</color>
+    <color name="white_background_dark">#F1F4F4</color>
+    <color name="white_green">#d9efea</color>
+    <color name="white_ripple">#e2e2e2</color>
+
+    <color name="grey_text_600">#A3A3A3</color>
+    <color name="grey_text_700">#9B9B9B</color>
+    <color name="grey_separator">#e2e2e2</color>
+    <color name="grey_transparent">#A53A403F</color>
+    <color name="grey_transparent_700">#402A2E2D</color>
+    <color name="grey_transparent_bg">#c90a0a0a</color>
+    <color name="grey_launcher_background">#FF242424</color>
+
+    <color name="green_ball_1">#2ECC8C</color>
+    <color name="green_ball_2">#5EEBC3</color>
+    <color name="green_ball_3">#46DAAA</color>
+    <color name="green_text">#00D6A6</color>
+    <color name="green_gallery">#FF359CA3</color>
+    <color name="green_600">#55ECC3</color>
+    <color name="green_700">#3FC0A4</color>
+    <color name="green_800">#1A8C7F</color>
+    <color name="green_900">#225152</color>
+    <color name="green_sign_up">#3c7e83</color>
+
+    <color name="gallery_color_1">#BDE8E5</color>
+    <color name="gallery_color_2">#FFA891</color>
+    <color name="gallery_color_3">#B7C9F0</color>
+    <color name="gallery_color_4">#FFC1CC</color>
+    <color name="gallery_color_5">#E9F4B1</color>
+</resources>
