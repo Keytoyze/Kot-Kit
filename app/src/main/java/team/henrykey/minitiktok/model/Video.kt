@@ -21,7 +21,7 @@ data class Video @JvmOverloads constructor(
     @SerializedName("_id")
     var id: String,
     @SerializedName("video_url")
-    var vedeoUrl: String,
+    var videoUrl: String,
     @SerializedName("createdAt")
     var createdAt: Date,
     @SerializedName("updatedAt")

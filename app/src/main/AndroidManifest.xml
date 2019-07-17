@@ -18,7 +18,9 @@
         <activity
             android:name=".view.ui.MainActivity"
             android:theme="@style/DarkActivityTheme" />
-        <activity android:name=".view.ui.EntranceActivity">
+        <activity
+            android:name=".view.ui.EntranceActivity"
+            android:theme="@style/DarkActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

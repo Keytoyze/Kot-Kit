@@ -27,6 +27,7 @@ class VideoViewModel(application: Application) : AndroidViewModel(application) {
 
     private val disposable = CompositeDisposable()
     private val getLiveData = MutableLiveData<List<Video>>()
+    private val myLiveData = MutableLiveData<List<Video>>()
     private val errorLiveData = MutableLiveData<Throwable>()
 
     private val retrofit by lazy {
@@ -44,6 +45,8 @@ class VideoViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getVideos() = getLiveData
 
+    fun getMyVideos() = myLiveData
+
     fun error() = errorLiveData
 
     fun fetchVideoList() {
@@ -52,6 +55,7 @@ class VideoViewModel(application: Application) : AndroidViewModel(application) {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 getLiveData.value = it.feeds
+                myLiveData.value = it.feeds.filter { it.studentId == "7777777" }
             }, {
                 errorLiveData.value = it
             })
