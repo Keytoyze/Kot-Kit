@@ -20,4 +20,7 @@
     <string name="take_15_s">拍15秒</string>
     <string name="upload">上传</string>
     <string name="reverse">翻转</string>
+    <string name="input_code">输入学号</string>
+    <string name="input_username">输入用户名</string>
+    <string name="login">登 录</string>
 </resources>

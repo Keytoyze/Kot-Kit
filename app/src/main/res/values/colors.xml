@@ -48,4 +48,7 @@
     <color name="gallery_color_3">#B7C9F0</color>
     <color name="gallery_color_4">#FFC1CC</color>
     <color name="gallery_color_5">#E9F4B1</color>
+
+    <color name="gradient_pink">#CA39E4</color>
+    <color name="gradient_purple">#6214EB</color>
 </resources>

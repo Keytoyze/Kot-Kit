@@ -194,7 +194,7 @@ class VideoActivity : AppCompatActivity(), View.OnClickListener {
 
                 mVideoWidth = iMediaPlayer.videoWidth
                 mVideoHeight = iMediaPlayer.videoHeight
-                videoScreenInit()
+//                videoScreenInit()
                 iMediaPlayer.start()
             }
 
@@ -229,23 +229,24 @@ class VideoActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun videoScreenInit() {
-        val wm = this
-            .getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val outSize = Point()
-        wm.defaultDisplay.getSize(outSize)
-        val windowWidth = outSize.x.toFloat()
-        val windowHeight = outSize.y.toFloat()
-        val winRatio = windowWidth / windowHeight
-        val videoRatio = mVideoWidth.toFloat() / mVideoHeight
-
-        "win: ${winRatio}, video: ${videoRatio} $mVideoWidth $mVideoHeight".e()
-
-        ijkPlayer.updateLayoutParams {
-            if (winRatio > videoRatio) {
-                width = (windowHeight * videoRatio).toInt()
-            } else {
-                height = (windowWidth / videoRatio).toInt()
-            }
-        }
+//        val wm = this
+//            .getSystemService(Context.WINDOW_SERVICE) as WindowManager
+//        val outSize = Point()
+//        wm.defaultDisplay.getSize(outSize)
+//        val windowWidth = outSize.x.toFloat()
+//        val windowHeight = outSize.y.toFloat()
+//        val winRatio = windowWidth / windowHeight
+//        val videoRatio = mVideoWidth.toFloat() / mVideoHeight
+//
+//        "win: ${winRatio}, video: ${videoRatio} $mVideoWidth $mVideoHeight".e()
+//
+//        ijkPlayer.updateLayoutParams {
+//            if (winRatio > videoRatio) {
+//                width = (windowHeight * videoRatio).toInt()
+//            } else {
+//                height = (windowWidth / videoRatio).toInt()
+//            }
+//        }
+        ijkPlayer.rotation = 90f
     }
 }
