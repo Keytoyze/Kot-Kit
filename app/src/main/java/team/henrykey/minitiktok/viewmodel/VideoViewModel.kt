@@ -21,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import team.henrykey.minitiktok.api.ApiContract
 import team.henrykey.minitiktok.api.IMiniDouyinService
 import team.henrykey.minitiktok.model.Video
+import team.henrykey.minitiktok.view.ui.LoginActivity
 import java.util.concurrent.TimeUnit
 
 class VideoViewModel(application: Application) : AndroidViewModel(application) {
@@ -55,7 +56,9 @@ class VideoViewModel(application: Application) : AndroidViewModel(application) {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 getLiveData.value = it.feeds
-                myLiveData.value = it.feeds.filter { it.studentId == "7777777" }
+                myLiveData.value = it.feeds.filter {
+                    it.studentId == LoginActivity.getCode(getApplication())
+                }
             }, {
                 errorLiveData.value = it
             })

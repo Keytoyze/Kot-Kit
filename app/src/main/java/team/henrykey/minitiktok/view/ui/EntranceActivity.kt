@@ -26,5 +26,6 @@ class EntranceActivity : AppCompatActivity() {
         } else {
             startActivity(Intent(this, LoginActivity::class.java))
         }
+        finish()
     }
 }

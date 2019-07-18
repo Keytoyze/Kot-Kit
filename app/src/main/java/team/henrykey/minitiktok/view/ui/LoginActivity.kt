@@ -6,9 +6,12 @@
 package team.henrykey.minitiktok.view.ui
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_login.*
 import team.henrykey.minitiktok.R
+import team.henrykey.minitiktok.extension.showToast
 import team.henrykey.minitiktok.util.SharedPrefsUtils
 
 class LoginActivity : AppCompatActivity() {
@@ -30,6 +33,23 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
+        loginButton.setOnClickListener {
+            when {
+                codeEdit.text.isNullOrEmpty() -> {
+                    showToast(getString(R.string.code_input_error))
+                    codeEdit.requestFocus()
+                }
+                nameEdit.text.isNullOrEmpty() -> {
+                    showToast(getString(R.string.user_input_error))
+                    nameEdit.requestFocus()
+                }
+                else -> {
+                    SharedPrefsUtils.putString(KEY_USER_NAME, nameEdit.text.toString(), this)
+                    SharedPrefsUtils.putString(KEY_CODE, codeEdit.text.toString(), this)
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }
+            }
+        }
     }
 }

@@ -26,4 +26,6 @@
     <string name="post_button">发布</string>
     <string name="choose_cover">选封面</string>
     <string name="post_hint">合适的标题\n能让更多人看到哦~</string>
+    <string name="code_input_error">请输入学号！</string>
+    <string name="user_input_error">请输入用户名！</string>
 </resources>
