@@ -99,6 +99,7 @@ dependencies {
 
     implementation 'com.facebook.fresco:fresco:1.10.0'
     compile project(':ijkplayer-java')
+    compile project(':ijkplayer-armv7a')
 
 
 //    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'

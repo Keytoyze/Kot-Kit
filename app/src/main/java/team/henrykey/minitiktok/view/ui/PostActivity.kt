@@ -19,6 +19,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
+import androidx.core.view.isVisible
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -80,6 +81,7 @@ class PostActivity : AppCompatActivity() {
         postBtn.setOnClickListener {
             selectedImg?.also { img ->
                 selectedVideo?.also { vid ->
+                    progressBar.visibility = View.VISIBLE
                     viewModel.postVideo(this@PostActivity, img, vid) {
                         val postStatus = when (it) {
                             true -> "Succeeded"
@@ -87,6 +89,7 @@ class PostActivity : AppCompatActivity() {
                         }
 
                         Toast.makeText(this@PostActivity, "Post $postStatus", Toast.LENGTH_SHORT).show()
+                        progressBar.visibility = View.INVISIBLE
                         finish()
                     }
                 }
