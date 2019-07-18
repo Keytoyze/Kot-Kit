@@ -25,7 +25,7 @@ import team.henrykey.minitiktok.util.RandomUtils
 open class LoveLayout : FrameLayout {
 
     companion object {
-        const val INTERVAL_THRESHOLD = 200L
+        const val INTERVAL_THRESHOLD = 400L
     }
 
     constructor(context: Context) : super(context)
@@ -43,6 +43,9 @@ open class LoveLayout : FrameLayout {
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
         event.e()
+        if (event.action != MotionEvent.ACTION_DOWN) {
+            return super.onTouchEvent(event)
+        }
         System.arraycopy(mHits, 1, mHits, 0, mHits.size - 1)
         mHits[mHits.size - 1] = SystemClock.uptimeMillis()
 
