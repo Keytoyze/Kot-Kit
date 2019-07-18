@@ -12,6 +12,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+    // http://tools.android.com/tech-docs/new-build-system/tips
+    //noinspection GroovyAssignabilityCheck
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    //noinspection GroovyAssignabilityCheck
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
     compileSdkVersion 28
     defaultConfig {
         applicationId "team.henrykey.minitiktok"
@@ -21,6 +27,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        targetSdkVersion rootProject.ext.targetSdkVersion
+    }
+    lintOptions {
+        abortOnError false
     }
     buildTypes {
         release {
@@ -88,8 +98,19 @@ dependencies {
     kapt "org.permissionsdispatcher:permissionsdispatcher-processor:$permission_dispatcher_version"
 
     implementation 'com.facebook.fresco:fresco:1.10.0'
+    compile project(':ijkplayer-java')
+
 
 //    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
 //    implementation files('libs/lite-orm-1.9.2.jar')
 
 }
+
+gradle.startParameter.taskNames.each { task ->
+    def subProjectName = task;
+    if (task.startsWith(':'))
+        subProjectName = task.split(":")[1]
+    if (subProjectName.equals(project.name))
+        apply from: new File(rootProject.projectDir, "tools/gradle-on-demand.gradle");
+}
+

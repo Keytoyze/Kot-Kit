@@ -171,6 +171,16 @@ class CustomCameraActivity : AppCompatActivity() {
         }
 
 
+        reverseText.setOnClickListener {
+            if (CAMERA_TYPE == Camera.CameraInfo.CAMERA_FACING_BACK) {
+                mCamera = getCamera(Camera.CameraInfo.CAMERA_FACING_FRONT)
+                startPreview(mHolder)
+            } else {
+                mCamera = getCamera(Camera.CameraInfo.CAMERA_FACING_BACK)
+                startPreview(mHolder)
+            }
+        }
+
 //        findViewById<View>(R.id.btn_picture).setOnClickListener({ v ->
 //            //DONE 拍一张照片
 //
@@ -431,10 +441,8 @@ class CustomCameraActivity : AppCompatActivity() {
         try {
             val exifInterface = ExifInterface(path)
             val orientation = ORIENTATION_MAP[getCameraDisplayOrientation(CAMERA_TYPE) / 90]
-            exifInterface.setAttribute(
-                ExifInterface.TAG_ORIENTATION,
-                orientation.toString()
-            )
+            exifInterface.setAttribute(ExifInterface.TAG_ORIENTATION,
+                orientation.toString())
             exifInterface.saveAttributes()
         } catch (e: IOException) {
             e.printStackTrace()

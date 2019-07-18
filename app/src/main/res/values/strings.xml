@@ -16,8 +16,18 @@
     <string name="stream_mine">我的视频</string>
     <string name="share">分享</string>
     <string name="origin">原创</string>
+    <string name="take_60_s">拍60秒</string>
+    <string name="take_15_s">拍15秒</string>
+    <string name="upload">上传</string>
+    <string name="reverse">翻转</string>
+    <string name="input_code">输入学号</string>
+    <string name="input_username">输入用户名</string>
+    <string name="login">登 录</string>
     <string name="post_button">发布</string>
     <string name="choose_button">选择视频</string>
     <string name="choose_cover">更换封面</string>
     <string name="post_hint">合适的标题\n能让更多人看到哦~</string>
+    <string name="code_input_error">请输入学号！</string>
+    <string name="user_input_error">请输入用户名！</string>
+    <string name="kot_kit">音 抖</string>
 </resources>

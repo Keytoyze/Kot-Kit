@@ -37,14 +37,14 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="拍60秒" />
+            android:text="@string/take_60_s" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/fifteenButton"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="拍15秒"
+            android:text="@string/take_15_s"
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -52,8 +52,22 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="上传" />
+            android:text="@string/upload" />
 
     </LinearLayout>
 
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/reverseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:drawableTop="@drawable/ic_autorenew_white_24dp"
+        android:drawablePadding="4dp"
+        android:text="@string/reverse"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

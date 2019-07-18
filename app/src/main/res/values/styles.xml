@@ -11,6 +11,7 @@
     <style name="DarkActivityTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/black_toolbar</item>
         <item name="colorPrimaryDark">@color/black_background</item>
+        <item name="colorAccent">@color/white</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/white_text</item>
         <item name="android:windowBackground">?colorPrimaryDark</item>
@@ -23,6 +24,11 @@
         <item name="android:windowTranslucentStatus" tools:ignore="NewApi">true</item>
         <item name="android:windowTranslucentNavigation" tools:ignore="NewApi">true</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
+    </style>
+
+    <style name="LoginTheme" parent="TranslucentTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@drawable/gradient_login</item>
     </style>
 
 </resources>
