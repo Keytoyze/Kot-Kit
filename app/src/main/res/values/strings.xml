@@ -16,4 +16,7 @@
     <string name="stream_mine">我的视频</string>
     <string name="share">分享</string>
     <string name="origin">原创</string>
+    <string name="post_button">发布</string>
+    <string name="choose_cover">选封面</string>
+    <string name="post_hint">合适的标题\n能让更多人看到哦~</string>
 </resources>

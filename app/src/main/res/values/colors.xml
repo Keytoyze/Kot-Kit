@@ -11,6 +11,7 @@
     <color name="black_text_800">#DE000000</color>
     <color name="black_background">#1e2322</color>
     <color name="black_background_dark">#0F1312</color>
+    <color name="black_background_transparent">#540F1312</color>
     <color name="black_toolbar">#2A2E2D</color>
     <color name="black_shadow">#a21c2e24</color>
 
@@ -48,4 +49,8 @@
     <color name="gallery_color_3">#B7C9F0</color>
     <color name="gallery_color_4">#FFC1CC</color>
     <color name="gallery_color_5">#E9F4B1</color>
+
+    <color name="pink_post_btn_background">#EA2957</color>
+
+    <color name="purple_background">#171825</color>
 </resources>
