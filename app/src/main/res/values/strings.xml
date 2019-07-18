@@ -16,4 +16,8 @@
     <string name="stream_mine">我的视频</string>
     <string name="share">分享</string>
     <string name="origin">原创</string>
+    <string name="take_60_s">拍60秒</string>
+    <string name="take_15_s">拍15秒</string>
+    <string name="upload">上传</string>
+    <string name="reverse">翻转</string>
 </resources>
