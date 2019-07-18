@@ -28,12 +28,11 @@
             app:boxStrokeColor="@color/white_text"
             app:hintTextColor="@color/white_text"
             android:textColorHint="@color/grey_text_600"
-            app:layout_constraintEnd_toStartOf="@+id/frameLayout2"
-            android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp" app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            app:layout_constraintBottom_toBottomOf="@+id/frameLayout2"
-            android:layout_marginTop="24dp">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/frameLayout2"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="24dp" android:layout_marginTop="24dp"
+            android:layout_marginLeft="24dp" android:layout_marginStart="24dp">
 
         <EditText
                 android:id="@+id/postEditText"
@@ -47,11 +46,13 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <FrameLayout android:layout_width="120dp" android:layout_height="180dp"
+    <FrameLayout android:layout_width="0dp" android:layout_height="400dp"
                  android:id="@+id/frameLayout2"
-                 android:layout_marginTop="24dp"
-                 app:layout_constraintTop_toBottomOf="@+id/toolbar" app:layout_constraintEnd_toEndOf="parent"
-                 android:layout_marginEnd="24dp" android:layout_marginRight="24dp">
+                 android:layout_marginBottom="24dp"
+                 app:layout_constraintBottom_toTopOf="@+id/vidBtn" app:layout_constraintEnd_toEndOf="parent"
+                 android:layout_marginEnd="24dp" android:layout_marginRight="24dp"
+                 app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="24dp"
+                 android:layout_marginStart="24dp">
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/postImg"
@@ -61,6 +62,7 @@
         />
 
         <TextView
+                android:id="@+id/posCoverText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -75,6 +77,7 @@
 
 
     <com.google.android.material.button.MaterialButton
+            android:id="@+id/postBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/post_button"
@@ -84,10 +87,10 @@
             android:textColor="@color/white_text"
             android:textAlignment="center"
             android:textSize="24sp"
-            android:paddingBottom="12dp"
-            android:paddingTop="12dp"
-            android:paddingStart="36dp"
-            android:paddingEnd="36dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             app:iconGravity="textStart"
             app:icon="@drawable/ic_file_upload_white_24dp"
             app:backgroundTint="@color/pink_post_btn_background"
@@ -95,5 +98,29 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="24dp"
             android:layout_marginEnd="24dp"/>
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/vidBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_button"
+            app:cornerRadius="4dp"
+            android:gravity="center"
+            app:iconTint="@color/white_text"
+            android:textColor="@color/white_text"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:paddingStart="36dp"
+            android:paddingEnd="36dp"
+            app:iconGravity="textStart"
+            app:icon="@drawable/ic_local_movies_white_24dp"
+            app:backgroundTint="@color/grey_choose_button"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="24dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="24dp"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

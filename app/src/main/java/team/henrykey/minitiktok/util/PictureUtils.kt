@@ -12,6 +12,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.ExifInterface
 import android.net.Uri
@@ -20,19 +21,16 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
-
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import io.reactivex.Observable
-import io.reactivex.Single
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okio.Okio
-
 import java.io.File
+import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
-import java.lang.IllegalArgumentException
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -125,8 +123,11 @@ object PictureUtils {
      * Create a File for saving an image or video
      */
     fun getOutputMediaFile(type: Int): File {
-        val mediaStorageDir = File(Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_PICTURES), "CameraDemo")
+        val mediaStorageDir = File(
+            Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES
+            ), "CameraDemo"
+        )
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
                 throw IOException("Cannot make dir")
@@ -137,11 +138,15 @@ object PictureUtils {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         val mediaFile: File
         if (type == MEDIA_TYPE_IMAGE) {
-            mediaFile = File(mediaStorageDir.path + File.separator +
-                "IMG_" + timeStamp + ".jpg")
+            mediaFile = File(
+                mediaStorageDir.path + File.separator +
+                        "IMG_" + timeStamp + ".jpg"
+            )
         } else if (type == MEDIA_TYPE_VIDEO) {
-            mediaFile = File(mediaStorageDir.path + File.separator +
-                "VID_" + timeStamp + ".mp4")
+            mediaFile = File(
+                mediaStorageDir.path + File.separator +
+                        "VID_" + timeStamp + ".mp4"
+            )
         } else {
             throw IllegalArgumentException("Unknown type: $type")
         }
@@ -240,4 +245,41 @@ object PictureUtils {
             it.onComplete()
         }
     }
+
+    fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int): Int {
+        // Raw height and width of image
+        val (height: Int, width: Int) = options.run { outHeight to outWidth }
+        var inSampleSize = 1
+
+        if (height > reqHeight || width > reqWidth) {
+
+            val halfHeight: Int = height / 2
+            val halfWidth: Int = width / 2
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while (halfHeight / inSampleSize >= reqHeight && halfWidth / inSampleSize >= reqWidth) {
+                inSampleSize *= 2
+            }
+        }
+
+        return inSampleSize
+    }
+
+    fun saveTempBitmap(context: Context, bitmap: Bitmap): File {
+        val timeStap = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val file = File(context.cacheDir, "$timeStap.jpg")
+        try {
+            val fos = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+            fos.flush()
+            fos.close()
+        } catch (e:FileNotFoundException) {
+            e.printStackTrace()
+        } catch (e:IOException) {
+            e.printStackTrace()
+        }
+        return file
+    }
+
 }

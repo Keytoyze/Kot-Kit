@@ -12,6 +12,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.hardware.Camera
 import android.media.CamcorderProfile
 import android.media.ExifInterface
@@ -19,17 +20,10 @@ import android.media.MediaRecorder
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
-import androidx.core.view.marginLeft
-import androidx.core.view.updateLayoutParams
-import androidx.core.view.updatePadding
-import androidx.viewpager.widget.PagerAdapter
 import kotlinx.android.synthetic.main.activity_custom_camera.*
 import team.henrykey.minitiktok.R
-import team.henrykey.minitiktok.extension.dp2px
 import team.henrykey.minitiktok.extension.getColorCompat
 import team.henrykey.minitiktok.util.PictureUtils
 import team.henrykey.minitiktok.util.PictureUtils.MEDIA_TYPE_IMAGE
@@ -86,8 +80,10 @@ class CustomCameraActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         setContentView(R.layout.activity_custom_camera)
 
         mSurfaceView = findViewById(R.id.img)
@@ -117,6 +113,12 @@ class CustomCameraActivity : AppCompatActivity() {
             //            mCamera?.takePicture(null, null, mPicture)
             if (isRecording) {
                 mShutterAnim?.end()
+                Intent(this@CustomCameraActivity, PostActivity::class.java).apply {
+                    videoFile?.let {
+                        this.putExtra(PostActivity.VIDEO_FILE_EXTRA, it)
+                        startActivity(this)
+                    }
+                }
             } else {
                 prepareVideoRecorder()
                 shutter.recording = true
@@ -159,6 +161,15 @@ class CustomCameraActivity : AppCompatActivity() {
             sixtyButton.setTextColor(getColorCompat(R.color.green_600))
             fifteenButton.setTextColor(getColorCompat(R.color.white))
         }
+
+        uploadButton.setOnClickListener {
+            if (!isRecording) {
+                Intent(this@CustomCameraActivity, PostActivity::class.java).apply {
+                    startActivity(this)
+                }
+            }
+        }
+
 
 //        findViewById<View>(R.id.btn_picture).setOnClickListener({ v ->
 //            //DONE 拍一张照片
@@ -260,8 +271,10 @@ class CustomCameraActivity : AppCompatActivity() {
         cam.setDisplayOrientation(rotationDegree)
 
         val parameters = cam.parameters
-        size = getOptimalPreviewSize(cam.parameters.supportedPreviewSizes,
-            mWidth, mHeight)
+        size = getOptimalPreviewSize(
+            cam.parameters.supportedPreviewSizes,
+            mWidth, mHeight
+        )
         parameters.setPreviewSize(size!!.width, size!!.height)
 
         if (parameters.supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
@@ -323,7 +336,8 @@ class CustomCameraActivity : AppCompatActivity() {
         }
 
         if (mCamera!!.parameters.supportedFocusModes
-                .contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
+                .contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)
+        ) {
             mCamera!!.autoFocus { success, camera ->
                 if (success) {
                     mCamera!!.cancelAutoFocus()
@@ -417,8 +431,10 @@ class CustomCameraActivity : AppCompatActivity() {
         try {
             val exifInterface = ExifInterface(path)
             val orientation = ORIENTATION_MAP[getCameraDisplayOrientation(CAMERA_TYPE) / 90]
-            exifInterface.setAttribute(ExifInterface.TAG_ORIENTATION,
-                orientation.toString())
+            exifInterface.setAttribute(
+                ExifInterface.TAG_ORIENTATION,
+                orientation.toString()
+            )
             exifInterface.saveAttributes()
         } catch (e: IOException) {
             e.printStackTrace()
@@ -436,6 +452,11 @@ class CustomCameraActivity : AppCompatActivity() {
         private val DEGREE_270 = 270
         private val DEGREE_360 = 360
 
-        private val ORIENTATION_MAP = intArrayOf(ExifInterface.ORIENTATION_NORMAL, ExifInterface.ORIENTATION_ROTATE_90, ExifInterface.ORIENTATION_ROTATE_180, ExifInterface.ORIENTATION_ROTATE_270)
+        private val ORIENTATION_MAP = intArrayOf(
+            ExifInterface.ORIENTATION_NORMAL,
+            ExifInterface.ORIENTATION_ROTATE_90,
+            ExifInterface.ORIENTATION_ROTATE_180,
+            ExifInterface.ORIENTATION_ROTATE_270
+        )
     }
 }

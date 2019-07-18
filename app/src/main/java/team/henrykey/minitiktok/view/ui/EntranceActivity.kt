@@ -22,7 +22,7 @@ class EntranceActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_entrance)
         // TODO login\
-        startActivity(Intent(this, PostActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 }
