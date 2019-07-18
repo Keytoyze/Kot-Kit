@@ -23,4 +23,7 @@
     <string name="input_code">输入学号</string>
     <string name="input_username">输入用户名</string>
     <string name="login">登 录</string>
+    <string name="post_button">发布</string>
+    <string name="choose_cover">选封面</string>
+    <string name="post_hint">合适的标题\n能让更多人看到哦~</string>
 </resources>

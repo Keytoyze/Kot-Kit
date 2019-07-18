@@ -25,7 +25,9 @@
         <activity
             android:name=".view.ui.LoginActivity"
             android:theme="@style/TranslucentTheme" />
-        <activity android:name=".view.ui.PostActivity" />
+        <activity android:name=".view.ui.PostActivity"
+                  android:theme="@style/DarkActivityTheme">
+        </activity>
         <activity
             android:name=".view.ui.VideoActivity"
             android:theme="@style/TranslucentTheme" />
