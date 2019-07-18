@@ -35,13 +35,30 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'x86_64', 'armeabi-v7a', 'armeabi'
+            universalApk false
+        }
+    }
+
+//    sourceSets {
+//        main {
+//            jniLibs.srcDirs = ['libs']
+//        }
+//
+//        release { java.srcDirs = ['src/release/java'] }
+//    }
+    
 }
 
 def lifecycle_version = "1.1.1"
 def permission_dispatcher_version = "4.5.0"
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
@@ -71,5 +88,8 @@ dependencies {
     kapt "org.permissionsdispatcher:permissionsdispatcher-processor:$permission_dispatcher_version"
 
     implementation 'com.facebook.fresco:fresco:1.10.0'
+
+//    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+//    implementation files('libs/lite-orm-1.9.2.jar')
 
 }

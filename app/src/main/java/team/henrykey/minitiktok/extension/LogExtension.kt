@@ -9,7 +9,7 @@ package team.henrykey.minitiktok.extension
 
 import android.util.Log
 
-const val TAG = "HonsenflagApp"
+const val TAG = "MiniTikTok"
 const val ENABLE_LOG = true
 
 fun <T> T.i() {

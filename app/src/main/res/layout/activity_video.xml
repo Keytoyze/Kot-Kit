@@ -12,13 +12,37 @@
         <variable
             name="model"
             type="team.henrykey.minitiktok.model.Video" />
+
+        <variable
+            name="isPlaying"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
+        android:fitsSystemWindows="false"
         tools:context=".view.ui.VideoActivity">
+
+        <team.henrykey.minitiktok.player.VideoPlayerIJK
+            android:id="@+id/ijkPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:alpha="0.5"
+            app:hide="@{isPlaying}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_play_circle_outline_black_24dp" />
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/avatarView"
@@ -29,7 +53,10 @@
             android:layout_marginRight="8dp"
             app:imageUri="@{model.avatarUrl}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundAsCircle="true"
+            app:roundingBorderColor="@android:color/white"
+            app:roundingBorderWidth="2dp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/loveText"
@@ -60,12 +87,85 @@
             android:layout_width="@dimen/item_height"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/item_margin"
-            android:drawableTop="@drawable/ic_comment_white_24dp"
+            android:drawableTop="@drawable/ic_share_black_24dp"
             android:text="@string/share"
             android:textAlignment="center"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@id/commentText"
             app:layout_constraintTop_toBottomOf="@id/commentText" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/authorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="@{model.atAuthor}"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/idText"
+            app:layout_constraintStart_toStartOf="@id/originText" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/idText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{model.studentId}"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/originText"
+            app:layout_constraintStart_toStartOf="@id/originText" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/originText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginBottom="50dp"
+            android:drawableStart="@drawable/ic_music_note_black_24dp"
+            android:drawableLeft="@drawable/ic_music_note_black_24dp"
+            android:drawablePadding="4dp"
+            android:text="@string/origin"
+            android:textColor="@color/green_600"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <team.henrykey.minitiktok.widget.FocusTextView
+            android:id="@+id/titleText"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="@{model.id}"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/originText"
+            app:layout_constraintStart_toEndOf="@id/originText"
+            app:layout_constraintTop_toTopOf="@id/originText" />
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/coverView"
+            android:layout_width="@dimen/item_height"
+            android:layout_height="@dimen/item_height"
+            app:imageUri="@{model.imageUrl}"
+            app:layout_constraintBottom_toBottomOf="@id/originText"
+            app:layout_constraintEnd_toEndOf="@id/avatarView"
+            app:roundAsCircle="true"
+            app:roundingBorderColor="@color/grey_text_700"
+            app:roundingBorderWidth="6dp" />
+
+        <team.henrykey.minitiktok.widget.LineProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

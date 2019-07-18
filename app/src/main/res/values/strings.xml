@@ -15,4 +15,5 @@
     <string name="stream_stream">动态</string>
     <string name="stream_mine">我的视频</string>
     <string name="share">分享</string>
+    <string name="origin">原创</string>
 </resources>

@@ -17,7 +17,7 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
         <activity
             android:name=".view.ui.VideoActivity"
-            android:theme="@style/DarkActivityTheme" />
+            android:theme="@style/TranslucentTheme" />
         <activity
             android:name=".view.ui.MainActivity"
             android:theme="@style/DarkActivityTheme" />

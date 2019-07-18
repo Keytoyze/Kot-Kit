@@ -43,5 +43,7 @@ data class Video constructor(
         }
     }
 
-    val avatarUrl = "http://img4.imgtn.bdimg.com/it/u=3521439206,3191058990&amp;fm=26&amp;gp=0.jpg"
+    fun getAvatarUrl() = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563453306992&di=f5f617ac9abb155bff7eeb670193d0e7&imgtype=0&src=http%3A%2F%2Fb4-q.mafengwo.net%2Fs9%2FM00%2FBD%2F6E%2FwKgBs1ePxUSAS1prAAvmNsjxe2801.jpeg%3FimageView2%2F2%2Fw%2F680%2Fq%2F90"
+
+    fun getAtAuthor() = "@$userName"
 }
