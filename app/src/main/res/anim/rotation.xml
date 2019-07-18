@@ -11,6 +11,6 @@
         android:pivotX="50%"
         android:pivotY="50%"
         android:repeatCount="infinite"
-        android:interpolator="@null"
+        android:interpolator="@android:anim/linear_interpolator"
         android:toDegrees="360" />
 </set>

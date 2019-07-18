@@ -15,10 +15,11 @@ import android.widget.FrameLayout
 import java.io.IOException
 
 import androidx.annotation.AttrRes
+import team.henrykey.minitiktok.widget.LoveLayout
 import tv.danmaku.ijk.media.player.IMediaPlayer
 import tv.danmaku.ijk.media.player.IjkMediaPlayer
 
-class VideoPlayerIJK : FrameLayout {
+class VideoPlayerIJK : LoveLayout {
     /**
      * 由ijkplayer提供，用于播放视频，需要给他传入一个surfaceView
      */

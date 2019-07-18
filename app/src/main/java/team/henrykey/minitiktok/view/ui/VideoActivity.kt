@@ -64,6 +64,11 @@ class VideoActivity : AppCompatActivity(), View.OnClickListener {
                 refresh()
             }
 
+        ijkPlayer.setOnLovedListener {
+            mModel.isLoved = true
+            binding.model = mModel
+        }
+
         init()
         initIJKPlayer()
     }
