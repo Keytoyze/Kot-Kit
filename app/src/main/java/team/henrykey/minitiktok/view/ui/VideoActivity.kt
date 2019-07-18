@@ -7,24 +7,21 @@ package team.henrykey.minitiktok.view.ui
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Point
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.updateLayoutParams
 import androidx.databinding.DataBindingUtil
 import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_video.*
 import team.henrykey.minitiktok.R
 import team.henrykey.minitiktok.databinding.ActivityVideoBinding
-import team.henrykey.minitiktok.extension.e
 import team.henrykey.minitiktok.extension.getColorCompat
 import team.henrykey.minitiktok.extension.showToast
 import team.henrykey.minitiktok.model.Video
@@ -85,7 +82,7 @@ class VideoActivity : AppCompatActivity(), View.OnClickListener {
     internal var mVideoHeight = 0
 
     internal var isPlayFinish = false
-    var mIsPlaying = true
+    private var mIsPlaying = true
 
 
 //    override fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -103,13 +100,17 @@ class VideoActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun init() {
         ijkPlayer.setOnClickListener {
-            if (mIsPlaying) {
-                ijkPlayer.pause()
-            } else {
-                ijkPlayer.start()
+            binding.isLoading?.let {
+                if (it) {
+                    if (mIsPlaying) {
+                        ijkPlayer.pause()
+                    } else {
+                        ijkPlayer.start()
+                    }
+                    mIsPlaying = !mIsPlaying
+                    binding.isPlaying = mIsPlaying
+                }
             }
-            mIsPlaying = !mIsPlaying
-            binding.isPlaying = mIsPlaying
         }
     }
 
@@ -194,7 +195,7 @@ class VideoActivity : AppCompatActivity(), View.OnClickListener {
 
                 mVideoWidth = iMediaPlayer.videoWidth
                 mVideoHeight = iMediaPlayer.videoHeight
-//                videoScreenInit()
+                videoScreenInit()
                 iMediaPlayer.start()
             }
 
@@ -220,7 +221,7 @@ class VideoActivity : AppCompatActivity(), View.OnClickListener {
     override fun onDestroy() {
         ijkPlayer.stop()
         ijkPlayer.release()
-        disposable?.dispose()
+        disposable.dispose()
         super.onDestroy()
     }
 
@@ -229,24 +230,18 @@ class VideoActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun videoScreenInit() {
-//        val wm = this
-//            .getSystemService(Context.WINDOW_SERVICE) as WindowManager
-//        val outSize = Point()
-//        wm.defaultDisplay.getSize(outSize)
-//        val windowWidth = outSize.x.toFloat()
-//        val windowHeight = outSize.y.toFloat()
-//        val winRatio = windowWidth / windowHeight
-//        val videoRatio = mVideoWidth.toFloat() / mVideoHeight
-//
-//        "win: ${winRatio}, video: ${videoRatio} $mVideoWidth $mVideoHeight".e()
-//
-//        ijkPlayer.updateLayoutParams {
-//            if (winRatio > videoRatio) {
-//                width = (windowHeight * videoRatio).toInt()
-//            } else {
-//                height = (windowWidth / videoRatio).toInt()
-//            }
-//        }
-        ijkPlayer.rotation = 90f
+        val wm = this
+            .getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val windowWidth = wm.defaultDisplay.width.toFloat()
+        val windowHeight = wm.defaultDisplay.height.toFloat()
+        var ratio = windowWidth / windowHeight
+        if (windowWidth < windowHeight) {
+            ratio = windowHeight / windowWidth
+        }
+
+        ijkPlayer.updateLayoutParams {
+            height = (mVideoHeight * ratio).toInt()
+            width = windowWidth.toInt()
+        }
     }
 }
