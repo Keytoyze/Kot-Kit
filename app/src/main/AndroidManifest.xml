@@ -24,7 +24,7 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
         <activity
             android:name=".view.ui.LoginActivity"
-            android:theme="@style/TranslucentTheme" />
+            android:theme="@style/LoginTheme" />
         <activity android:name=".view.ui.PostActivity"
                   android:theme="@style/DarkActivityTheme">
         </activity>

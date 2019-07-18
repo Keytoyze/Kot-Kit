@@ -26,4 +26,9 @@
         <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
     </style>
 
+    <style name="LoginTheme" parent="TranslucentTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@drawable/gradient_login</item>
+    </style>
+
 </resources>
