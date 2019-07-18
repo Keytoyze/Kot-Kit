@@ -41,7 +41,7 @@ class StaggeredAdapter(
     override fun onBindViewHolder(holder: StaggeredViewHolder, position: Int) {
         holder.fieldItemBinding.run {
             holder.imageView.post {
-                val current = mData[position]
+                val current = mData[holder.adapterPosition]
                 holder.imageView.run {
                     val newHeight = width / current.imageWidth * current.imageHeight
                     updateLayoutParams {
@@ -51,7 +51,7 @@ class StaggeredAdapter(
                 model = current
             }
             root.setOnClickListener {
-                mContext.startActivity(VideoActivity.newIntent(mContext, mData[position]))
+                mContext.startActivity(VideoActivity.newIntent(mContext, mData[holder.adapterPosition]))
             }
         }
     }

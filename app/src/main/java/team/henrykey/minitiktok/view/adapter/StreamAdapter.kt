@@ -36,9 +36,9 @@ open class StreamAdapter(
 
     override fun onBindViewHolder(holder: StreamViewHolder, position: Int) {
         holder.fieldItemBinding.run {
-            model = mData[position]
+            model = mData[holder.adapterPosition]
             root.setOnClickListener {
-                mContext.startActivity(VideoActivity.newIntent(mContext, mData[position]))
+                mContext.startActivity(VideoActivity.newIntent(mContext, mData[holder.adapterPosition]))
             }
         }
     }
