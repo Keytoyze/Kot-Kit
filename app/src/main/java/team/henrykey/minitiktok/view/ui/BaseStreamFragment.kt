@@ -14,6 +14,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_stream.*
 import team.henrykey.minitiktok.R
 import team.henrykey.minitiktok.extension.showToast
@@ -22,10 +23,6 @@ import team.henrykey.minitiktok.view.adapter.StreamAdapter
 import team.henrykey.minitiktok.viewmodel.VideoViewModel
 
 abstract class BaseStreamFragment : Fragment() {
-
-    private val mAdapter: StreamAdapter by lazy {
-        StreamAdapter(ArrayList())
-    }
 
     private val mViewModel by lazy {
         // different fragments share the same viewmodel
@@ -39,13 +36,10 @@ abstract class BaseStreamFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        streamList.run {
-            adapter = mAdapter
-            layoutManager = LinearLayoutManager(context)
-        }
+        onCreate(streamList)
 
         onLoad(mViewModel).observe(this, Observer {
-            mAdapter.setList(it)
+            onFinish(it)
             refreshLayout.isRefreshing = false
         })
 
@@ -61,5 +55,9 @@ abstract class BaseStreamFragment : Fragment() {
         }
     }
 
+    abstract fun onCreate(recyclerView: RecyclerView)
+
     abstract fun onLoad(viewModel: VideoViewModel): LiveData<List<Video>>
+
+    abstract fun onFinish(data: List<Video>)
 }

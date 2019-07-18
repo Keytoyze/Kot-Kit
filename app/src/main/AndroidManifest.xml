@@ -16,6 +16,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
         <activity
+            android:name=".view.ui.VideoActivity"
+            android:theme="@style/DarkActivityTheme" />
+        <activity
             android:name=".view.ui.MainActivity"
             android:theme="@style/DarkActivityTheme" />
         <activity

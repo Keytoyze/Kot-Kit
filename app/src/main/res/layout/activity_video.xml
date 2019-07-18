@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019 Chen Mouxiang <cmx_1007@foxmail.com>
+  ~ All Rights Reserved.
+  -->
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="team.henrykey.minitiktok.model.Video" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".view.ui.VideoActivity">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/avatarView"
+            android:layout_width="@dimen/item_height"
+            android:layout_height="@dimen/item_height"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:imageUri="@{model.avatarUrl}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/loveText"
+            android:layout_width="@dimen/item_height"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_margin"
+            android:drawableTop="@{model.loved ? @drawable/ic_favorite_white_24dp : @drawable/ic_favorite_border_white_24dp}"
+            android:text="@{String.valueOf(model.thumbCount)}"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/avatarView"
+            app:layout_constraintTop_toBottomOf="@id/avatarView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/commentText"
+            android:layout_width="@dimen/item_height"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_margin"
+            android:drawableTop="@drawable/ic_comment_white_24dp"
+            android:text="@{String.valueOf(model.thumbCount)}"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/loveText"
+            app:layout_constraintTop_toBottomOf="@id/loveText" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/shareText"
+            android:layout_width="@dimen/item_height"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_margin"
+            android:drawableTop="@drawable/ic_comment_white_24dp"
+            android:text="@string/share"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/commentText"
+            app:layout_constraintTop_toBottomOf="@id/commentText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

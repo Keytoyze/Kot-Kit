@@ -15,7 +15,7 @@ class EntranceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_entrance)
-
+        // TODO login\
         startActivity(Intent(this, MainActivity::class.java))
     }
 }

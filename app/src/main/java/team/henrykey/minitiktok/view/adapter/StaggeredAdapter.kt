@@ -7,36 +7,49 @@ package team.henrykey.minitiktok.view.adapter
 
 import android.content.Context
 import android.view.ViewGroup
+import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.facebook.drawee.view.SimpleDraweeView
 import team.henrykey.minitiktok.R
-import team.henrykey.minitiktok.databinding.StreamItemBinding
+import team.henrykey.minitiktok.databinding.StreamStaggeredItemBinding
 import team.henrykey.minitiktok.extension.inflateDataBinding
 import team.henrykey.minitiktok.model.Video
 import team.henrykey.minitiktok.view.ui.VideoActivity
 
-open class StreamAdapter(
+class StaggeredAdapter(
     private var mData: List<Video>
-) : RecyclerView.Adapter<StreamAdapter.StreamViewHolder>() {
+) : RecyclerView.Adapter<StaggeredAdapter.StaggeredViewHolder>() {
 
     private lateinit var mContext: Context
 
-    class StreamViewHolder(
-        val fieldItemBinding: StreamItemBinding
-    ) : RecyclerView.ViewHolder(fieldItemBinding.root)
+    class StaggeredViewHolder(
+        val fieldItemBinding: StreamStaggeredItemBinding
+    ) : RecyclerView.ViewHolder(fieldItemBinding.root) {
+        val imageView: SimpleDraweeView = fieldItemBinding.root.findViewById(R.id.coverView)
+    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StreamViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StaggeredViewHolder {
         mContext = parent.context
-        return StreamViewHolder(parent.inflateDataBinding(R.layout.stream_item))
+        return StaggeredViewHolder(parent.inflateDataBinding(R.layout.stream_staggered_item))
     }
 
     override fun getItemCount(): Int {
         return mData.size
     }
 
-    override fun onBindViewHolder(holder: StreamViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: StaggeredViewHolder, position: Int) {
         holder.fieldItemBinding.run {
-            model = mData[position]
+            holder.imageView.post {
+                val current = mData[position]
+                holder.imageView.run {
+                    val newHeight = width / current.imageWidth * current.imageHeight
+                    updateLayoutParams {
+                        height = newHeight.toInt()
+                    }
+                }
+                model = current
+            }
             root.setOnClickListener {
                 mContext.startActivity(VideoActivity.newIntent(mContext, mData[position]))
             }

@@ -29,8 +29,8 @@ object Binding {
 
     @JvmStatic
     @BindingAdapter("date")
-    fun setDate(textView: TextView, date: Date) {
-        textView.text = date.formatFriendly(textView.context)
+    fun setDate(textView: TextView, date: Date?) {
+        textView.text = date?.formatFriendly(textView.context)
     }
 
     @JvmStatic
