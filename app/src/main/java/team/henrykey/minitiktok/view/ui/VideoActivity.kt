@@ -16,17 +16,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.updateLayoutParams
 import androidx.databinding.DataBindingUtil
 import io.reactivex.Observable
+import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_video.*
 import team.henrykey.minitiktok.R
 import team.henrykey.minitiktok.databinding.ActivityVideoBinding
 import team.henrykey.minitiktok.extension.e
 import team.henrykey.minitiktok.extension.getColorCompat
+import team.henrykey.minitiktok.extension.showToast
 import team.henrykey.minitiktok.model.Video
 import team.henrykey.minitiktok.player.VideoPlayerListener
+import team.henrykey.minitiktok.util.PictureUtils
 import tv.danmaku.ijk.media.player.IMediaPlayer
 import tv.danmaku.ijk.media.player.IjkMediaPlayer
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 class VideoActivity : AppCompatActivity(), View.OnClickListener {
@@ -43,7 +49,7 @@ class VideoActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityVideoBinding
 
-    private var disposable: Disposable? = null
+    private var disposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,15 +60,17 @@ class VideoActivity : AppCompatActivity(), View.OnClickListener {
             .apply {
                 model = mModel
                 isPlaying = mIsPlaying
+                isLoading = true
             }
 
         coverView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.rotation))
         progressBar.setColor(getColorCompat(R.color.green_600))
-        disposable = Observable.interval(20, TimeUnit.MILLISECONDS)
+        disposable.add(Observable.interval(20, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 refresh()
             }
+        )
 
         ijkPlayer.setOnLovedListener {
             mModel.isLoved = true
@@ -134,7 +142,29 @@ class VideoActivity : AppCompatActivity(), View.OnClickListener {
 
 //        ijkPlayer.setListener(VideoPlayerListener())
         //ijkPlayer.setVideoResource(R.raw.yuminhong);
-        ijkPlayer.setVideoPath(mModel.videoUrl.replaceFirst("https", "http"))
+
+        val file = File(cacheDir, "${mModel.videoUrl.hashCode()}.mp4")
+        val markFile = File(cacheDir, "${mModel.videoUrl.hashCode()}.download")
+        if (markFile.exists()) { // download stops before
+            file.delete()
+            markFile.delete()
+        }
+        markFile.createNewFile()
+        disposable.add(PictureUtils.downloadVideo(mModel.videoUrl, file)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                binding.loadingProgress = "$it%"
+            }, {
+                it.printStackTrace()
+                showToast(it.message)
+            }, {
+                ijkPlayer.setVideoPath(file.absolutePath)
+                binding.isLoading = false
+                markFile.delete()
+            })
+        )
+
 
         /*ijkPlayer.setVideoResource(R.raw.big_buck_bunny);
         ijkPlayer.setVideoPath("https://media.w3.org/2010/05/sintel/trailer.mp4");

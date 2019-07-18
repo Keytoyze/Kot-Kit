@@ -35,10 +35,15 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
+                app:failureImage="@mipmap/icon_failure"
+                app:failureImageScaleType="centerInside"
                 app:imageUri="@{model.imageUrl}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:progressBarAutoRotateInterval="5000"
+                app:progressBarImage="@mipmap/icon_progress_bar"
+                app:progressBarImageScaleType="centerCrop"
                 app:roundedCornerRadius="2dp" />
 
             <androidx.appcompat.widget.AppCompatTextView

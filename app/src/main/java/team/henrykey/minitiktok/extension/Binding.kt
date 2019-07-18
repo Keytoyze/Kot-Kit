@@ -24,8 +24,10 @@ object Binding {
 
     @JvmStatic
     @BindingAdapter("hide")
-    fun setHide(view: View, hide: Boolean) {
-        view.visibility = if (hide) View.GONE else View.VISIBLE
+    fun setHide(view: View, hide: Boolean?) {
+        hide?.let {
+            view.visibility = if (it) View.GONE else View.VISIBLE
+        }
     }
 
     @JvmStatic

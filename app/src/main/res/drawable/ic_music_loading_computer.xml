@@ -1,0 +1,42 @@
+<!--
+  ~ Copyright (c) 2019 Chen Mouxiang <cmx_1007@foxmail.com>
+  ~ All Rights Reserved.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="153dp"
+    android:height="130dp"
+    android:viewportWidth="153"
+    android:viewportHeight="130">
+    <path
+        android:fillColor="#1DE9B6"
+        android:fillType="nonZero"
+        android:pathData="M144.546,7.831C147.132,23.294 149.277,42.35 150.981,65C152.671,87.46 153.3,105.121 152.868,117.981L152.868,117.981C152.845,118.679 152.639,119.359 152.271,119.953L147.219,128.107C146.49,129.284 145.204,130 143.819,130L9.178,130C7.794,130 6.507,129.284 5.778,128.107L0.719,119.94C0.355,119.353 0.149,118.681 0.122,117.99C-0.308,107.012 0.399,89.264 2.244,64.746C4.107,39.982 6.175,21.007 8.448,7.821L8.448,7.821C8.548,7.239 8.777,6.686 9.116,6.202L12.277,1.701C13.025,0.635 14.247,0 15.55,0L137.447,-0C138.751,-0 139.972,0.635 140.721,1.701L143.874,6.192C144.218,6.682 144.447,7.242 144.546,7.831Z"
+        android:strokeWidth="1"
+        android:strokeColor="#00000000" />
+    <path
+        android:fillColor="#000000"
+        android:fillType="nonZero"
+        android:pathData="M22.527,8L130.414,8C133.321,8 135.81,10.084 136.321,12.945C138.01,22.403 139.617,37.922 141.142,59.5C142.62,80.426 143.217,95.653 142.93,105.18L142.93,105.18C142.833,108.422 140.176,111 136.933,111L16.063,111C12.75,111 10.063,108.314 10.063,105C10.063,104.967 10.064,104.935 10.064,104.902C10.28,91.71 11.004,76.387 12.237,58.934C13.49,41.215 14.936,25.982 16.576,13.234L16.576,13.234C16.961,10.241 19.51,8 22.527,8Z"
+        android:strokeWidth="1"
+        android:strokeColor="#00000000" />
+    <path
+        android:fillColor="#1A1A1A"
+        android:fillType="nonZero"
+        android:pathData="M138,28.588L10,91C10.368,81.195 10.97,70.421 11.804,58.677C13.055,41.058 14.499,25.909 16.138,13.231C16.525,10.239 19.072,8 22.089,8L129.945,8C132.85,8 135.338,10.082 135.851,12.941C136.583,17.024 137.299,22.24 138,28.588Z"
+        android:strokeWidth="1"
+        android:strokeColor="#00000000" />
+    <path
+        android:fillColor="#000000"
+        android:fillType="nonZero"
+        android:pathData="M134,120m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+        android:strokeWidth="1"
+        android:strokeColor="#00000000" />
+    <path
+        android:fillColor="#000000"
+        android:fillType="nonZero"
+        android:pathData="M112,119h11v2h-11z"
+        android:strokeWidth="1"
+        android:strokeColor="#00000000" />
+
+</vector>

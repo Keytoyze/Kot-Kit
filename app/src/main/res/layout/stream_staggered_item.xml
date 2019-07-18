@@ -30,6 +30,11 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 app:imageUri="@{model.imageUrl}"
+                app:progressBarImage="@mipmap/icon_progress_bar"
+                app:progressBarImageScaleType="centerInside"
+                app:progressBarAutoRotateInterval="5000"
+                app:failureImage="@mipmap/icon_failure"
+                app:failureImageScaleType="centerInside"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

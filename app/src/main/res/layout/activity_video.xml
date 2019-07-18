@@ -16,6 +16,14 @@
         <variable
             name="isPlaying"
             type="Boolean" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="loadingProgress"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
@@ -23,6 +31,41 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="false"
         tools:context=".view.ui.VideoActivity">
+
+        <team.henrykey.minitiktok.widget.MusicLoadingView
+            android:id="@+id/loadingView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:hide="@{!isLoading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/progressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{loadingProgress}"
+            android:textColor="@color/green_text"
+            android:textSize="32sp"
+            app:hide="@{!isLoading}"
+            app:layout_constraintBottom_toBottomOf="@+id/loadingView"
+            app:layout_constraintEnd_toEndOf="@+id/loadingView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            app:layout_constraintVertical_bias="0.32" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
 
         <team.henrykey.minitiktok.player.VideoPlayerIJK
             android:id="@+id/ijkPlayer"
