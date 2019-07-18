@@ -23,13 +23,21 @@ import android.util.Log
 
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import io.reactivex.Observable
+import io.reactivex.Single
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okio.Okio
 
 import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
 import java.lang.IllegalArgumentException
 import java.text.SimpleDateFormat
-import java.util.ArrayList
-import java.util.Date
+import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
+import kotlin.math.roundToInt
 
 object PictureUtils {
 
@@ -198,5 +206,38 @@ object PictureUtils {
         val fileUri = Uri.fromFile(file)
         intent.data = fileUri
         context.sendBroadcast(intent)
+    }
+
+    fun downloadVideo(url: String, file: File): Observable<Int> {
+        return Observable.create<Int> {
+            if (file.exists()) {
+                it.onComplete()
+                return@create
+            }
+            val request = Request.Builder()
+                .url(url)
+                .build()
+            val clicent = OkHttpClient.Builder().connectTimeout(120, TimeUnit.SECONDS)
+                .build()
+            val responseBody = clicent.newCall(request).execute().body()
+            val total = responseBody!!.contentLength()
+
+            val sink = Okio.buffer(Okio.sink(file))
+            val buffer = sink.buffer()
+            var currentSize = 0L
+            val bufferSize = 200 * 1024L //200kb
+            var len: Long
+            val source = responseBody.source()
+            len = source.read(buffer, bufferSize)
+            while (len != -1L) {
+                sink.emit()
+                currentSize += len
+                it.onNext((currentSize.toFloat() / total * 100).roundToInt())
+                len = source.read(buffer, bufferSize)
+            }
+            source.close()
+            sink.close()
+            it.onComplete()
+        }
     }
 }

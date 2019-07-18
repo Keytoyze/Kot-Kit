@@ -22,6 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
+        <activity android:name=".view.ui.PostActivity"></activity>
         <activity
             android:name=".view.ui.VideoActivity"
             android:theme="@style/TranslucentTheme" />

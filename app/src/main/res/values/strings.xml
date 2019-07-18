@@ -4,7 +4,7 @@
   -->
 
 <resources>
-    <string name="app_name">Mini Tik-Tok</string>
+    <string name="app_name">Kot Kit</string>
 
     <string name="time_seconds_ago">%1$d秒前</string>
     <string name="time_minutes_ago">%1$d分钟前</string>

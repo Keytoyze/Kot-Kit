@@ -19,10 +19,18 @@ import android.media.MediaRecorder
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.core.view.marginLeft
+import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
+import androidx.viewpager.widget.PagerAdapter
 import kotlinx.android.synthetic.main.activity_custom_camera.*
 import team.henrykey.minitiktok.R
+import team.henrykey.minitiktok.extension.dp2px
+import team.henrykey.minitiktok.extension.getColorCompat
 import team.henrykey.minitiktok.util.PictureUtils
 import team.henrykey.minitiktok.util.PictureUtils.MEDIA_TYPE_IMAGE
 import team.henrykey.minitiktok.util.PictureUtils.MEDIA_TYPE_VIDEO
@@ -106,7 +114,7 @@ class CustomCameraActivity : AppCompatActivity() {
         })
 
         shutter.setOnClickListener {
-//            mCamera?.takePicture(null, null, mPicture)
+            //            mCamera?.takePicture(null, null, mPicture)
             if (isRecording) {
                 mShutterAnim?.end()
             } else {
@@ -120,7 +128,7 @@ class CustomCameraActivity : AppCompatActivity() {
                         addUpdateListener {
                             shutter.setDegree(it.animatedValue as Float)
                         }
-                        addListener(object: AnimatorListenerAdapter() {
+                        addListener(object : AnimatorListenerAdapter() {
                             override fun onAnimationEnd(animation: Animator?) {
                                 shutter.recording = false
                                 shutter.setDegree(0f)
@@ -130,6 +138,26 @@ class CustomCameraActivity : AppCompatActivity() {
                         start()
                     }
             }
+        }
+
+        fifteenButton.setOnClickListener {
+            if (isRecording) return@setOnClickListener
+            mDuration = 15000L
+            fifteenButton.paint.isFakeBoldText = true
+            sixtyButton.paint.isFakeBoldText = false
+            fifteenButton.setTextColor(getColorCompat(R.color.green_600))
+            sixtyButton.setTextColor(getColorCompat(R.color.white))
+        }
+
+        fifteenButton.performClick()
+
+        sixtyButton.setOnClickListener {
+            if (isRecording) return@setOnClickListener
+            mDuration = 60000L
+            sixtyButton.paint.isFakeBoldText = true
+            fifteenButton.paint.isFakeBoldText = false
+            sixtyButton.setTextColor(getColorCompat(R.color.green_600))
+            fifteenButton.setTextColor(getColorCompat(R.color.white))
         }
 
 //        findViewById<View>(R.id.btn_picture).setOnClickListener({ v ->
@@ -217,6 +245,7 @@ class CustomCameraActivity : AppCompatActivity() {
 //                mCamera!!.parameters = parameters
 //            }
 //        })
+
     }
 
     fun getCamera(position: Int): Camera {
