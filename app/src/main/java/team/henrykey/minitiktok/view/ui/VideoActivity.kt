@@ -101,7 +101,7 @@ class VideoActivity : AppCompatActivity(), View.OnClickListener {
     private fun init() {
         ijkPlayer.setOnClickListener {
             binding.isLoading?.let {
-                if (it) {
+                if (!it) {
                     if (mIsPlaying) {
                         ijkPlayer.pause()
                     } else {
