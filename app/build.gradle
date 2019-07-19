@@ -50,7 +50,7 @@ android {
             enable true
             reset()
             include 'x86', 'x86_64', 'armeabi-v7a', 'armeabi'
-            universalApk false
+            universalApk true
         }
     }
 
@@ -100,6 +100,8 @@ dependencies {
     implementation 'com.facebook.fresco:fresco:1.10.0'
     compile project(':ijkplayer-java')
     compile project(':ijkplayer-armv7a')
+    compile project(':ijkplayer-exo')
+    compile project(':ijkplayer-x86')
 
 
 //    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'

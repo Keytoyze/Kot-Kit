@@ -25,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             app:layout_collapseMode="pin"
+            android:background="@color/black_background"
             app:layout_scrollFlags="scroll|enterAlways|snap" />
 
         <com.google.android.material.tabs.TabLayout
@@ -32,6 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_gravity="bottom"
+            android:background="@color/black_background"
+            app:tabSelectedTextColor="@color/white_text"
+            app:tabTextColor="@color/grey_text_600"
             app:tabMode="fixed">
 
         </com.google.android.material.tabs.TabLayout>

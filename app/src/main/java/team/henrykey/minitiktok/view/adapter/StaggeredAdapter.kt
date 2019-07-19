@@ -41,6 +41,7 @@ class StaggeredAdapter(
     override fun onBindViewHolder(holder: StaggeredViewHolder, position: Int) {
         holder.fieldItemBinding.run {
             holder.imageView.post {
+                if (holder.adapterPosition < 0) return@post
                 val current = mData[holder.adapterPosition]
                 holder.imageView.run {
                     val newHeight = width / current.imageWidth * current.imageHeight
